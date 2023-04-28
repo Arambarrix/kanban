@@ -1,0 +1,30 @@
+<p>ticket-component works!</p>
+<div class="card my-5">
+    <div class="card-body">
+      <button>Ajouter</button>
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ticket</th>
+            <th scope="col">Auteur</th>
+            <th scope="col">Enc charge</th>
+            <th scope="col">Date</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ticket of tickets">
+            <td>{{ ticket.id }}</td>
+            <td>{{ ticket.texte }}</td>
+            <td>{{ ticket.auteur?.nom }}</td>
+            <td>{{ ticket.membresup?.nom}}</td>
+            <td>{{ ticket.dateCreation }}</td>
+            <td><button (click)="onDelete(ticket.id)">Supprimer</button>
+            <button (click)="onUpdate()">Modifier</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
