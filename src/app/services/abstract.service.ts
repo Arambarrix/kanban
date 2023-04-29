@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export abstract class AbstractService<T> {
-  private value:T|any;
   private path="http://localhost:8080/";
   private url :string | undefined;
   constructor(private http: HttpClient) {
@@ -23,20 +22,19 @@ export abstract class AbstractService<T> {
   public setPath(){
     this.path+=this.url
   }
-  public findAll <value>(): Observable<T[]> {
+  public findAll (): Observable<T[]> {
     return this.http.get<T[]>(this.path+"/");
   }
-  public findOne <value>(id:string): Observable<value> {
-    return this.http.get<value>(this.path+"/"+id);
+  public findOne <T>(id:string): Observable<T> {
+    return this.http.get<T>(this.path+"/"+id);
   }
-  public createOne<T> (t:any) {
-    return this.http.post<T>(this.path+this.url+"/all",t);
+  public createOne(t:any) {
+    return this.http.post(this.path,t);
   }
-  public updateOne <T>(id:string,t:any){
-    return this.http.put<T>(this.path+"/"+id,t);
+  public updateOne(id:string,t:any){
+    return this.http.put(this.path+"/"+id,t);
   }
   public deleteOne(id:string) {
-    console.log(this.path+"/"+id)
     return this.http.delete(this.path+"/"+id)
   }
 

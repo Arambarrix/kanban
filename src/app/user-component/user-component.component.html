@@ -2,20 +2,25 @@
 <div class="card my-5">
     <div class="card-body">
       <button (click)="addUser()">Ajouter un utilisateur</button>
-      <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of users">
-            <td>{{ user.id }}</td>
-            <td>{{ user.nom }}</td>
-          </tr>
-        </tbody>
+      <table mat-table [dataSource]="users">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>User id </th>
+          <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+        </ng-container>
+        <ng-container matColumnDef="nom">
+          <th mat-header-cell *matHeaderCellDef>Nom </th>
+          <td mat-cell *matCellDef="let user"> {{user.nom}} </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions </th>
+          <td mat-cell *matCellDef="let user"> 
+            <button (click)="onDelete(user.id)">Supprimer</button>
+            <button (click)="onUpdate(user.id)">Modifier</button> 
+          </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let emprow; columns: displayedColumns"></tr>
       </table>
     </div>
   </div>

@@ -1,1 +1,17 @@
-<p>update-user-component works!</p>
+<h3>Modification d'un utilisateur</h3>{{data.nom}}
+<div [hidden]="submitted" style="width: 400px;">
+    <form (ngSubmit)="onSubmit()" #updateForm="ngForm">
+      <div class="form-group">
+        <label for="nom">Nom d'utilisateur</label>
+        <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="currentUser.nom" required #name="ngModel">
+      </div>
+      <div [hidden]="!name.pristine" class="alert alert-danger">Nom requis</div>
+  
+      <button type="submit" [disabled]="!updateForm.form.valid" class="btn btn-success">Submit</button>
+    </form>
+  </div>
+  
+  <div [hidden]="!submitted">
+    <h4>Création réussie!</h4>
+    <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+  </div>

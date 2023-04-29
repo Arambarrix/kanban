@@ -1,1 +1,16 @@
-<p>add-etat-component works!</p>
+<h3>Création d'un etat</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()" #etatForm="ngForm">
+    <div class="form-group">
+      <label for="nom">Nom de l'état</label>
+      <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="etat.libelle" required #name="ngModel">
+    </div>
+    <div [hidden]="!name.pristine" class="alert alert-danger">libelle requis</div>
+    <button type="submit" [disabled]="!etatForm.form.valid" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>Création réussie!</h4>
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>

@@ -1,1 +1,16 @@
-<p>update-etat-component works!</p>
+<h3>Modification d'un état</h3>{{data.libelle}}
+<div [hidden]="submitted" style="width: 400px;">
+    <form (ngSubmit)="onSubmit()" #updateForm="ngForm">
+      <div class="form-group">
+        <label for="nom">Nom de l'état</label>
+        <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="currentEtat.libelle" required #name="ngModel">
+      </div>
+      <div [hidden]="!name.pristine" class="alert alert-danger">Nom requis</div>
+      <button type="submit" [disabled]="!updateForm.form.valid" class="btn btn-success">Submit</button>
+    </form>
+  </div>
+  
+  <div [hidden]="!submitted">
+    <h4>Création réussie!</h4>
+    <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+  </div>

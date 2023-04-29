@@ -1,1 +1,36 @@
 <p>add-ticket-component works!</p>
+<h3>Création d'un ticket</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+    <div class="form-group">
+      <label for="nom">Description du ticket</label>
+      <textarea  class="form-control" id="nom" name="nom" [(ngModel)]="ticket.texte" required #name="ngModel"></textarea>
+    </div>
+    <div [hidden]="!name.pristine" class="alert alert-danger">Nom requis</div>
+    <div class="form-group">
+      <label for="auteur">Auteur :</label>
+      <select [(ngModel)]="ticket.auteur" required name="auteur">
+        <option *ngFor="let auteur of data.users" [ngValue]="auteur">
+          {{auteur.id}}-{{auteur.nom}}
+    </option>
+    </select>
+    <div class="form-group">
+        <label for="etat">Etat :</label>
+        <select [(ngModel)]="ticket.etat" name="etat">
+          <option *ngFor="let etat of data.etats" [ngValue]="etat">
+        {{etat?.libelle}}
+      </option>
+      </select>
+    </div>
+    </div>
+   
+
+    <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>Création réussie!</h4>
+  
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>

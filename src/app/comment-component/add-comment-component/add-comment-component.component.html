@@ -1,1 +1,36 @@
 <p>add-comment-component works!</p>
+<h3>Création d'un commentaire</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()" #commentForm="ngForm">
+    <div class="form-group">
+      <label for="nom">Description du commentaire</label>
+      <textarea  class="form-control" id="nom" name="nom" [(ngModel)]="comment.texte" required #name="ngModel"></textarea>
+    </div>
+    <div [hidden]="!name.pristine" class="alert alert-danger">Nom requis</div>
+    <div class="form-group">
+      <label for="auteur">Auteur :</label>
+      <select [(ngModel)]="comment.user" required name="auteur">
+        <option *ngFor="let auteur of data.users" [ngValue]="auteur">
+          {{auteur.id}}-{{auteur.nom}}
+    </option>
+    </select>
+    <div class="form-group">
+        <label for="etat">Ticket :</label>
+        <select [(ngModel)]="comment.ticket" name="etat">
+          <option *ngFor="let ticket of data.tickets" [ngValue]="ticket">
+        {{ticket?.texte}}
+      </option>
+      </select>
+    </div>
+    </div>
+   
+
+    <button type="submit" [disabled]="!commentForm.form.valid" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>Création réussie!</h4>
+  
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>

@@ -1,1 +1,16 @@
-<p>add-tag-component works!</p>
+<h3>Création d'un tag</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()" #tagForm="ngForm">
+    <div class="form-group">
+      <label for="nom">Nom du tag</label>
+      <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="tag.libelle" required #name="ngModel">
+    </div>
+    <div [hidden]="!name.pristine" class="alert alert-danger">Nom requis</div>
+    <button type="submit" [disabled]="!tagForm.form.valid" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>Création réussie!</h4>
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>

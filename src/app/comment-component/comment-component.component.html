@@ -1,1 +1,43 @@
 <p>comment-component works!</p>
+<div class="card my-5">
+    <div class="card-body">
+      <button (click)="addComment()">Ecrire un commentaire</button>
+      <table mat-table [dataSource]="comments">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>Comment id </th>
+          <td mat-cell *matCellDef="let comment"> {{comment.id}} </td>
+        </ng-container>
+        <ng-container matColumnDef="texte">
+          <th mat-header-cell *matHeaderCellDef>Description </th>
+          <td mat-cell *matCellDef="let comment"> {{comment.texte}} </td>
+        </ng-container>
+        <ng-container matColumnDef="user">
+          <th mat-header-cell *matHeaderCellDef>Auteur </th>
+          <td mat-cell *matCellDef="let comment"> {{comment.user?.nom}} </td>
+        </ng-container>
+        <ng-container matColumnDef="ticket">
+          <th mat-header-cell *matHeaderCellDef>Attribution </th>
+          <td mat-cell *matCellDef="let comment"> {{comment.ticket?.texte}} </td>
+        </ng-container>
+        <ng-container matColumnDef="etat">
+          <th mat-header-cell *matHeaderCellDef>Etat du ticket </th>
+          <td mat-cell *matCellDef="let ticket"> {{ticket.etat?.libelle}} </td>
+        </ng-container>
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Date du commentaire </th>
+          <td mat-cell *matCellDef="let comment"> {{comment.dateCommentaire}} </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions </th>
+          <td mat-cell *matCellDef="let comment"> 
+            <button (click)="onDelete(comment.id)">Supprimer</button>
+            <button (click)="onUpdate(comment.id)">Modifier</button> 
+          </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let emprow; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
+  

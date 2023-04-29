@@ -33,6 +33,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
+import { UpdateUserComponentComponent } from './user-component/update-user-component/update-user-component.component';
+import { AddCommentComponentComponent } from './comment-component/add-comment-component/add-comment-component.component';
+import { UpdateCommentComponentComponent } from './comment-component/update-comment-component/update-comment-component.component';
+import { AddEtatComponentComponent } from './etat-component/add-etat-component/add-etat-component.component';
+import { UpdateEtatComponentComponent } from './etat-component/update-etat-component/update-etat-component.component';
+import { AddTagComponentComponent } from './tag-component/add-tag-component/add-tag-component.component';
+import { UpdateTagComponentComponent } from './tag-component/update-tag-component/update-tag-component.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +55,15 @@ import {MatTabsModule} from '@angular/material/tabs';
     UpdateTicketComponentComponent,
     AddUserComponentComponent,
     DashboardComponent,
-    NavigationComponent
+    NavigationComponent,
+    UpdateUserComponentComponent,
+    AddCommentComponentComponent,
+    CommentComponentComponent,
+    UpdateCommentComponentComponent,
+    AddEtatComponentComponent,
+    UpdateEtatComponentComponent,
+    AddTagComponentComponent,
+    UpdateTagComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +81,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTableModule,
   ],
   providers: [TicketService,TagService,UserService,SupportService,EtatService,CommentService],
   bootstrap: [AppComponent]

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { UserComponentComponent } from '../user-component.component';
+import { SupportService } from 'src/app/services/support.service';
+import { Support } from 'src/app/models/support';
 
 @Component({
   selector: 'app-add-user-component',
@@ -10,38 +12,47 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./add-user-component.component.scss']
 })
 export class AddUserComponentComponent implements OnInit {
+
+  type=1;
   user=new User();
   submitted=false;
-  addNewUserForm:FormGroup
-  constructor(private builder:FormBuilder,private userService: UserService,private router:Router) {
-    this.addNewUserForm=this.builder.group({
+  constructor(private supportService:SupportService,private userService: UserService,private router:Router) {
 
-    })
   }
 
   ngOnInit() {
   }
-  newUser(): void {
+  newUser(): void {    
     this.submitted = false;
     this.user = new User();
   }
 
   save() {
-    this.userService.createOne(this.user).subscribe(data => {
-      console.log(data)
-      this.user = new User();
-      this.gotoList();
-    }, 
-    error => console.log(error));
+    if(this.type==0){
+      this.userService.createOne(this.user).subscribe(data => {
+        console.log(data)
+        this.user = new User();
+        this.gotoList();
+      }, 
+      error => console.log(error));
+    }
+    else{
+      this.supportService.createOne(this.user).subscribe(data => {
+        console.log(data)
+        this.user = new Support();
+        this.gotoList();
+      }, 
+      error => console.log(error));
+    }
+    
   }
 
   onSubmit() {
     this.submitted = true;
     this.save();    
   }
-
   gotoList() {
-    this.router.navigate(['/']);
+    this.router.navigate([UserComponentComponent]);
   }
 
 }
