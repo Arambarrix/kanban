@@ -28,17 +28,17 @@ export class UserComponentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.findAll().subscribe(data => {
-      this.users = data;
-    });
+    this.getAll()
   }
   addUser(){
     this.dialog.open(AddUserComponentComponent)
+    this.dialog.afterAllClosed.subscribe(()=>this.getAll())
   }
   onDelete(id:string){
     this.userService.deleteOne(id).subscribe(
       response => {
         console.log(response);
+        this.getAll()
       },
       error => {
           console.log(error);
@@ -54,11 +54,15 @@ export class UserComponentComponent implements OnInit {
           nom:data.nom
         }
       })
+      this.dialog.afterAllClosed.subscribe(()=>this.getAll())
     },
     error => {
       console.log(error);
+    }); 
+  }
+  getAll(){
+    this.userService.findAll().subscribe(data => {
+      this.users = data;
     });
-   
-    
   }
 }

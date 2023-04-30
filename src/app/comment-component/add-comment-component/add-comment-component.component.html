@@ -16,7 +16,7 @@
     </select>
     <div class="form-group">
         <label for="etat">Ticket :</label>
-        <select [(ngModel)]="comment.ticket" name="etat">
+        <select [(ngModel)]="comment.ticket" name="ticket">
           <option *ngFor="let ticket of data.tickets" [ngValue]="ticket">
         {{ticket?.texte}}
       </option>
